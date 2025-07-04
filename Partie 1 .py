@@ -237,7 +237,7 @@ for opt_name, opt_func in optimizers.items():
         for epochs in epochs_list:
             clear_session()
 
-            print(f"\n🔧 Training with: optimizer={opt_name}, lr={lr}, epochs={epochs}")
+            print(f"\n Training with: optimizer={opt_name}, lr={lr}, epochs={epochs}")
             model = build_cnn_model()
             optimizer = opt_func(lr)
             model.compile(optimizer=optimizer, loss='categorical_crossentropy', metrics=['accuracy'])
@@ -270,7 +270,7 @@ for opt_name, opt_func in optimizers.items():
 df_results = pd.DataFrame(results)
 df_results_sorted = df_results.sort_values(by='test_loss').reset_index(drop=True)
 
-print("\n📊 Top 10 configurations (triées par test_loss):")
+print("\n Top 10 configurations (triées par test_loss):")
 print(df_results_sorted.head(10))
 
 top50 = df_results_sorted.head(50)
@@ -279,7 +279,7 @@ best_lr = top50['learning_rate'].value_counts().idxmax()
 best_epochs = top50['epochs'].value_counts().idxmax()
 adam_count = top50[top50['optimizer'] == 'adam'].shape[0]
 
-print(f"\n🔎 Analyse des 50 meilleures combinaisons :")
+print(f"\n Analyse des 50 meilleures combinaisons :")
 print(f"- Optimizer le plus fréquent : {best_opt}")
 print(f"- Learning rate le plus fréquent : {best_lr}")
 print(f"- Epochs les plus fréquents : {best_epochs}")
